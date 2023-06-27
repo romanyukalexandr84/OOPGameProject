@@ -1,7 +1,5 @@
-class Mag extends Wizard{
-
+class Mag extends Wizards {
     public Mag(String name) {
-        super(1, 100, name, "Mag", 7, 8, 1);
+        super(1, 100, name, "Mag", 7, 2);
     }
-
 }
