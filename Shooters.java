@@ -9,6 +9,6 @@ public abstract class Shooters extends BasicHero{
     @Override
     public String toString() {
         return ("NAME: " + name + " " + "TYPE: " + type + " " + "ID = " + id + " " + "HEALTH = " + healthLevel + " "
-                + " " + "INITIATIVE = " + initiative + " " + "ATTACK = " + attackLevelBase);
+                + "INITIATIVE = " + initiative + " " + "ATTACK = " + attackLevelBase);
     }
 }

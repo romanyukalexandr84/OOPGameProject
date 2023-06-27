@@ -16,6 +16,6 @@ public abstract class BasicHero {
     @Override
     public String toString() {
         return ("NAME: " + name + " " + "TYPE: " + type + " " + "ID = " + id + " " + "HEALTH = " + healthLevel + " "
-                + " " + "INITIATIVE = " + initiative);
+                + "INITIATIVE = " + initiative);
     }
 }
