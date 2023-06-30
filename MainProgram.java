@@ -1,19 +1,40 @@
-public class MainProgram {
-    public static void main(String[] args) {
-        Mag Merlin = new Mag("Merlin");
-        Monk Igor = new Monk("Igor");
-        Thief Harry = new Thief("Harry");
-        Lancer Richard = new Lancer("Richard");
-        Sniper Hawk = new Sniper("Hawk");
-        Archer Robin = new Archer("Robin");
-        Farmer James = new Farmer("James");
+import java.util.ArrayList;
+import java.util.Random;
 
-        System.out.println(Merlin);
-        System.out.println(Igor);
-        System.out.println(Harry);
-        System.out.println(Richard);
-        System.out.println(Hawk);
-        System.out.println(Robin);
-        System.out.println(James);
+public class MainProgram {
+
+    private static String getName() {
+        return String.valueOf(Names.values()[new Random().nextInt(Names.values().length)]);
+    }
+    public static void main(String[] args) {
+
+        ArrayList<BasicHero> alliance = new ArrayList<>();
+        ArrayList<BasicHero> empire = new ArrayList<>();
+
+        for (int count = 0; count < 10; count++) {
+            int newCharacter = new Random().nextInt(0, 4);
+            switch (newCharacter) {
+                case 0 -> {
+                    alliance.add(new Mag(getName()));
+                    empire.add(new Monk(getName()));
+                }
+                case 1 -> {
+                    alliance.add(new Lancer(getName()));
+                    empire.add(new Thief(getName()));
+                }
+                case 2 -> {
+                    alliance.add(new Sniper(getName()));
+                    empire.add(new Archer(getName()));
+                }
+                default -> {
+                    alliance.add(new Farmer(getName()));
+                    empire.add(new Farmer(getName()));
+                }
+            }
+        }
+        System.out.println("Alliance:");
+        alliance.forEach(item -> System.out.println(item.getInfo()));
+        System.out.println("Empire:");
+        empire.forEach(item -> System.out.println(item.getInfo()));
     }
 }
