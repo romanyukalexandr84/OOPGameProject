@@ -34,14 +34,31 @@ public class MainProgram {
                 }
             }
         }
-        System.out.println("Alliance:");
+
+        ArrayList<BasicHero> unitedTeam = new ArrayList<>();
+        unitedTeam.addAll(alliance);
+        unitedTeam.addAll(empire);
+        unitedTeam.sort((o1, o2) -> o2.getInitiative() - o1.getInitiative());
+
+        System.out.println("Alliance members:");
         alliance.forEach(item -> System.out.println(item.getInfo()));
-        System.out.println("Empire:");
+        System.out.println("Empire members:");
         empire.forEach(item -> System.out.println(item.getInfo()));
 
-        System.out.println("Alliance enemies:");
-        alliance.forEach(item -> item.step(empire));
-        System.out.println("Empire enemies:");
-        empire.forEach(item -> item.step(alliance));
+        for (BasicHero item : unitedTeam) {
+            if (alliance.contains(item)) {
+                item.step(empire, alliance);
+            } else {
+                item.step(alliance, empire);
+            }
+            System.out.println("INITIATIVE = " + item.getInitiative());
+        }
+
+        System.out.println("_".repeat(120));
+        System.out.println("Alliance info after step:");
+        alliance.forEach(item -> System.out.println(item.getInfo()));
+        System.out.println("Empire info after step:");
+        empire.forEach(item -> System.out.println(item.getInfo()));
+
     }
 }
