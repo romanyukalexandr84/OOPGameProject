@@ -13,8 +13,7 @@ public abstract class Infantry extends BasicHero {
 
     @Override
     public String getInfo() {
-        return ("NAME: " + name + " TYPE: " + type + " ID = " + id + " HEALTH = " + healthLevel
-                + " INITIATIVE = " + initiative + " ATTACK = " + attackLevelBase + " X = " + place.x + " Y = " + place.y);
+        return (name + " " + type + " " + (char)9829 + healthLevel + " " + (char)9733 + initiative + " " + (char)9876 + attackLevelBase);
     }
 
     @Override

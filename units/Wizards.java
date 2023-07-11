@@ -13,12 +13,21 @@ public abstract class Wizards extends BasicHero {
 
     @Override
     public String getInfo() {
-        return ("NAME: " + name + " TYPE: " + type + " ID = " + id + " HEALTH = " + healthLevel
-                + " INITIATIVE = " + initiative + " HEAL = " + heal + " X = " + place.x + " Y = " + place.y);
+        return (name + " " + type + " " + (char)9829 + healthLevel + " " + (char)9733 + initiative + " " + (char)9752 + heal);
     }
 
-    @Override
     public void step(ArrayList<BasicHero> enemies, ArrayList<BasicHero> ours) {
-
+        if (this.healthLevel > 0) {
+            for (BasicHero item : ours) {
+                if (item.healthLevel < 99) {
+                    item.healthLevel += this.heal;
+                    System.out.println("Вылечил: " + item.name);
+                    return;
+                }
+            }
+                BasicHero nearestEnemy = findNearEnemy(enemies);
+                nearestEnemy.healthLevel -= this.heal;
+                System.out.println("Повредил: " + nearestEnemy.name);
+        }
     }
 }
