@@ -18,6 +18,36 @@ public abstract class Infantry extends BasicHero {
 
     @Override
     public void step(ArrayList<BasicHero> enemies, ArrayList<BasicHero> ours) {
+        if (this.healthLevel <=0) return;
+        BasicHero nearestEnemy = findNearEnemy(enemies);
 
+        if (this.place.calcDistance(nearestEnemy.place) < 2) {
+            nearestEnemy.getDamage(this.attackLevelBase);
+            return;
+        }
+
+        Coordinates temp = new Coordinates(place.x, place.y);
+        if (Math.abs(this.place.x-nearestEnemy.place.x) > Math.abs(this.place.y - nearestEnemy.place.y)) {
+            if (this.place.x < nearestEnemy.place.x) {
+                temp.x += 1;
+            } else {
+                temp.x -= 1;
+            }
+        } else {
+            if (this.place.y < nearestEnemy.place.y) {
+                temp.y +=1;
+            } else {
+                temp.y -=1;
+            }
+        }
+
+        //Проверяем, не занята ли клетка (живым членом своей команды), на которую собираемся сходить:
+        boolean flag = false;
+        for (BasicHero item : ours) {
+            if (item.place.x == temp.x & item.place.y == temp.y & item.healthLevel > 0) flag = true;
+        }
+        if (flag) return;
+        this.place.x = temp.x;
+        this.place.y = temp.y;
     }
 }

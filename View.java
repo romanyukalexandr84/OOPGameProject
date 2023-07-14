@@ -1,5 +1,4 @@
 import units.BasicHero;
-
 import java.util.Collections;
 
 public class View {

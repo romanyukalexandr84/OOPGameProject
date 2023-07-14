@@ -23,7 +23,7 @@ public abstract class Shooters extends BasicHero {
         if (this.healthLevel <=0 || this.shoots == 0) return;
 
         BasicHero nearestEnemy = findNearEnemy(enemies);
-        nearestEnemy.healthLevel = nearestEnemy.healthLevel - this.attackLevelBase;
+        nearestEnemy.getDamage(this.attackLevelBase);
 
         for (BasicHero item : ours) {
             if (item.type.contains("Farmer") && !((Farmer)(item)).busy && item.healthLevel > 0) {
