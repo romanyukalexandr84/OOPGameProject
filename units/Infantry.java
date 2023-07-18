@@ -42,11 +42,14 @@ public abstract class Infantry extends BasicHero {
         }
 
         //Проверяем, не занята ли клетка (живым членом своей команды), на которую собираемся сходить:
-        boolean flag = false;
+        boolean busyField = false;
         for (BasicHero item : ours) {
-            if (item.place.x == temp.x & item.place.y == temp.y & item.healthLevel > 0) flag = true;
+            if (item.place.x == temp.x & item.place.y == temp.y & item.healthLevel > 0) {
+                busyField = true;
+                break;
+            }
         }
-        if (flag) return;
+        if (busyField) return;
         this.place.x = temp.x;
         this.place.y = temp.y;
     }

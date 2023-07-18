@@ -55,47 +55,43 @@ public class MainProgram {
         unitedTeam.addAll(empire);
         unitedTeam.sort((o1, o2) -> o2.getInitiative() - o1.getInitiative());
 
-        Scanner scan = new Scanner(System.in);
-
         View.view();
 
         int deadCountAlliance = 0;
         int deadCountEmpire = 0;
         boolean endGame = false;
 
+        Scanner scan = new Scanner(System.in);
+
         while (!endGame) {
             scan.nextLine();
             for (BasicHero item : unitedTeam) {
                 if (alliance.contains(item)) {
+                    if (item.getHealthLevel() <= 0) {
+                        deadCountAlliance += 1;
+                    }
                     item.step(empire, alliance);
                 } else {
+                    if (item.getHealthLevel() <= 0) {
+                        deadCountEmpire += 1;
+                    }
                     item.step(alliance, empire);
                 }
             }
 
             View.view();
 
-            for (BasicHero item : alliance) {
-                if (item.getHealthLevel() <= 0) {
-                    deadCountAlliance += 1;
-                }
-                if (deadCountAlliance == alliance.size()) {
-                    System.out.println("Победила команда Empire");
-                    endGame = true;
-                }
+            if (deadCountAlliance == alliance.size()) {
+                System.out.println("GAME OVER\nEmpire wins");
+                endGame = true;
+            }
+            if (deadCountEmpire == empire.size()) {
+                System.out.println("GAME OVER\nAlliance wins");
+                endGame = true;
             }
 
-            for (BasicHero item : empire) {
-                if (item.getHealthLevel() <= 0) {
-                    deadCountEmpire += 1;
-                }
-                if (deadCountEmpire == empire.size()) {
-                    System.out.println("Победила команда Alliance");
-                    endGame = true;
-                }
-            }
-            System.out.println("Убито у Alliance: " + deadCountAlliance);
-            System.out.println("Убито у Empire: " + deadCountEmpire);
+            System.out.println("Statistics:\nAlliance killed: " + deadCountAlliance);
+            System.out.println("Empire killed: " + deadCountEmpire);
             deadCountAlliance = 0;
             deadCountEmpire = 0;
         }

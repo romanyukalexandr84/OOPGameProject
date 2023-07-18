@@ -21,13 +21,13 @@ public abstract class Wizards extends BasicHero {
             for (BasicHero item : ours) {
                 if (item.healthLevel < 99 & item.healthLevel > 0) {
                     item.healthLevel += this.heal;
-                    System.out.println("Вылечил: " + item.name);
+                    System.out.println("Чародей " + this.name + " вылечил персонажа: " + item.name);
                     return;
                 }
             }
             BasicHero nearestEnemy = findNearEnemy(enemies);
             nearestEnemy.getDamage(this.heal);
-            System.out.println("Повредил: " + nearestEnemy.name);
+            System.out.println("Чародей " + this.name + " нанес урон персонажу: " + nearestEnemy.name);
         }
     }
 }
